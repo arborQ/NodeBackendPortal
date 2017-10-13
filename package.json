@@ -1,0 +1,27 @@
+{
+  "name": "nodebackendportal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "hapi": "node ./server/hapi.server.js",
+    "express": "node ./server/express.server.js",
+    "mongo": "cd C:\\Program Files\\MongoDB\\Server\\3.4\\bin && mongod --port 8001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arborQ/NodeBackendPortal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arborQ/NodeBackendPortal/issues"
+  },
+  "homepage": "https://github.com/arborQ/NodeBackendPortal#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "hapi": "^16.6.2",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.1"
+  }
+}
