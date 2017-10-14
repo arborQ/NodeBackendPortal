@@ -1,6 +1,6 @@
 const schema = {
-    firstName: String,
-    lastName: String,
+    name: String,
+    price: Number,
 };
 
 exports.Schema = schema;

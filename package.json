@@ -1,3 +1,5 @@
+
+
 {
   "name": "nodebackendportal",
   "version": "1.0.0",
@@ -6,7 +8,7 @@
   "scripts": {
     "hapi": "node ./server/hapi.server.js",
     "express": "node ./server/express.server.js",
-    "mongo": "cd C:\\Program Files\\MongoDB\\Server\\3.4\\bin && mongod --port 8001"
+    "mongo": "mongod --port 8011"
   },
   "repository": {
     "type": "git",

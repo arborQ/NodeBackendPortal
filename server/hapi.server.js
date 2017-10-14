@@ -1,16 +1,15 @@
 var hapi = require("hapi");
+var config = require("./config.json");
 var controllers = require("../controllers").default;
-const server = new hapi.Server();
-
-
+var server = new hapi.Server();
 
 server.connection({
     host: "localhost",
-    port: 8000
+    port: config.serverPort
 });
 
-for(const index in controllers) {
-    const controller = controllers[index];
+for(var index in controllers) {
+    var controller = controllers[index];
     
     server.route({
         method: controller.method, 
