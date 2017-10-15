@@ -6,8 +6,8 @@
   "scripts": {
     "hapi": "ts-node ./server/hapi.server.ts",
     "express": "node ./server/express.server.js",
-    "ts:hapi": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/hapi.server.ts",
-    "mongo": "mongod --port 8011"
+    "hapi:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/hapi.server.ts",
+    "mongo": "mongod --httpinterface --port 8011"
   },
   "repository": {
     "type": "git",

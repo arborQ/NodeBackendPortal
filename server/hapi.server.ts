@@ -13,9 +13,11 @@ for (const index in controllers) {
     const controller = controllers[index];
     server.route({
         handler: (request, reply) => {
-            new Promise(controller.handler(request)).then((data) => {
-                reply(data);
-            });
+            console.log("in handler", controller.handler);
+            return reply(controller.handler(request));
+            // new Promise(controller.handler(request)).then((data) => {
+            //     reply(data);
+            // });
         },
         method: controller.method,
         path: `/api/${index}${controller.path}`,

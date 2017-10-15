@@ -5,7 +5,10 @@ export default {
     handler: ( request ) => {
         return new Promise<IUser[]>((resolve) => {
             database().then((db) => {
-                resolve(db.Users.find((e) => true));
+                console.log("resolve");
+                db.Users.find().then((users) => {
+                    resolve([...users]);
+                });
             });
         });
     },

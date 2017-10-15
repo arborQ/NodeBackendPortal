@@ -6,9 +6,9 @@ export class RepositoryClass<T> {
     this.model = model(name, new Schema(dbCollection as any));
   }
 
-  find(predicate: (entity) => boolean): Promise<T[]> {
+  find(predicate: (entity) => boolean = (entity) => true): Promise<T[]> {
     return new Promise<T[]>((resolve) => {
-      return this.model.find();
+      resolve(this.model.find());
     });
   }
 }

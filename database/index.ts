@@ -1,10 +1,8 @@
-import { connect, connection, model, Schema } from "mongoose";
+import * as mongoose from "mongoose";
 import * as products from "./products";
 import * as users from "./users";
 
 import { RepositoryClass } from "./repository";
-
-connect(`mongodb://localhost:8011/portalDb`);
 
 export type EntitySchema<T> = {
   [P in keyof T]: any;
@@ -14,19 +12,17 @@ interface IDatabaseContext {
   readonly Users: RepositoryClass<users.IUser>;
   readonly Products: RepositoryClass<products.IProduct>;
 }
+(mongoose as any).Promise = global.Promise;
+
+mongoose.connect(`mongodb://localhost:8011/portalDb`);
+console.log("connect");
 
 export default function createCollections(): Promise<IDatabaseContext> {
-  const db = connection;
-  db.on("error", console.error.bind(console, "connection error:"));
-  return new Promise<IDatabaseContext>((resolve) => {
-    db.once("open", () => {
+  console.log("createCollections");
+  const context: IDatabaseContext = {
+    Products: new RepositoryClass("Products", products.ProductSchema),
+    Users: new RepositoryClass("Users", users.UserSchema),
+  };
 
-      const context: IDatabaseContext = {
-        Products: new RepositoryClass("Products", products.ProductSchema),
-        Users: new RepositoryClass("Users", users.UserSchema),
-      };
-
-      resolve(context);
-    });
-  });
+  return Promise.resolve(context);
 }
