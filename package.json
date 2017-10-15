@@ -1,13 +1,12 @@
-
-
 {
   "name": "nodebackendportal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "hapi": "node ./server/hapi.server.js",
+    "hapi": "ts-node ./server/hapi.server.ts",
     "express": "node ./server/express.server.js",
+    "ts:hapi": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/hapi.server.ts",
     "mongo": "mongod --port 8011"
   },
   "repository": {
@@ -21,9 +20,14 @@
   },
   "homepage": "https://github.com/arborQ/NodeBackendPortal#readme",
   "dependencies": {
+    "@types/hapi": "^16.1.10",
+    "@types/mongoose": "^4.7.23",
     "express": "^4.16.2",
     "hapi": "^16.6.2",
     "mongodb": "^2.2.33",
-    "mongoose": "^4.12.1"
+    "mongoose": "^4.12.1",
+    "nodemon": "^1.12.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.3"
   }
 }
