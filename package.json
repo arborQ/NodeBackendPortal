@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "hapi": "ts-node ./server/hapi.server.ts",
-    "express": "node ./server/express.server.js",
+    "express": "ts-node ./server/express.server.ts",
     "hapi:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/hapi.server.ts",
+    "express:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/express.server.ts",
     "mongo": "mongod --httpinterface --port 8011"
   },
   "repository": {
