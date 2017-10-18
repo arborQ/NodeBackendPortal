@@ -1,11 +1,12 @@
 import * as hapi from "hapi";
 import controllers from "../controllers";
+import * as config from "./config";
 
 const server = new hapi.Server();
 
 server.connection({
-    host: "localhost",
-    port: 8011,
+    host: config.serverHost,
+    port: config.serverPort,
 });
 
 // tslint:disable-next-line:forin
