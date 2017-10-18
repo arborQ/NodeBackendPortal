@@ -3,7 +3,7 @@ import * as products from "./products";
 import * as users from "./users";
 
 import { IRepository, RepositoryClass } from "./repository";
-
+// mongod --dbpath="c:\data\db" --logpath="c:\data\db\log.txt" --install
 export type EntitySchema<T> = {
   [P in keyof T]: any;
 };
@@ -14,7 +14,7 @@ interface IDatabaseContext {
 }
 (mongoose as any).Promise = global.Promise;
 
-mongoose.connect(`mongodb://localhost:8011/portalDb`);
+mongoose.connect(`mongodb://localhost:27017/portalDb`);
 
 const context: IDatabaseContext = {
   Products: new RepositoryClass("Products", products.ProductSchema),

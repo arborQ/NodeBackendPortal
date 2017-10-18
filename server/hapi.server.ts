@@ -10,7 +10,7 @@ server.connection({
 
 // tslint:disable-next-line:forin
 for (const index in controllers) {
-    const controller = controllers[index];
+    const controller = new controllers[index]();
     server.route({
         handler: (request, reply) => {
             return reply(controller.handler(request));
