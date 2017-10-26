@@ -11,10 +11,19 @@ server.connection({
 
 // tslint:disable-next-line:forin
 for (const index in controllers) {
-    const controller = new controllers[index]();
+    const controllerClass = controllers[index];
+    const controller = new controllerClass();
+
     server.route({
-        handler: (request, reply) => {
-            return reply(controller.handler(request));
+        config: {
+            handler: (request, reply) => {
+                return reply(controller.handler(request));
+            },
+            pre: (controllerClass.PreActions || []).map((cc: Utils.IPreAction) => {
+                return {
+                    method: (request, reply) => { cc.action().then(reply); },
+                };
+            }),
         },
         method: controller.method,
         path: `/api/${index}${controller.path}`,

@@ -1,4 +1,5 @@
 import { IRepository } from "bx-entities";
+import BaseControllerAction from "./baseController";
 
 interface IBaseIndexControllerOptions<O> {
     repository: IRepository<O>;
@@ -6,13 +7,16 @@ interface IBaseIndexControllerOptions<O> {
     method?: string;
 }
 
-export default abstract class IndexBaseControllerAction<I, O> {
+export default abstract class IndexBaseControllerAction<I, O>
+    extends BaseControllerAction<I, O, { data: O[], schema: any }> {
     defaultOptions: Partial<IBaseIndexControllerOptions<O>> = {
         method: "GET",
         path: "",
     };
 
-    constructor(private options: IBaseIndexControllerOptions<O>) { }
+    constructor(private options: IBaseIndexControllerOptions<O>) {
+        super();
+     }
 
     protected get controllerOptions(): IBaseIndexControllerOptions<O> {
         return Object.assign({}, this.defaultOptions, this.options);
