@@ -1,14 +1,22 @@
 import { Document, Model, model, Schema, SchemaDefinition } from "mongoose";
 import { IEntity } from "./entity";
 
-export class RepositoryClass<T> implements Utils.IRepository<T> {
+export default class RepositoryClass<T> implements Utils.IRepository<T> {
 
   private model: Model<any>;
-  constructor(name: string, private dbCollection: T) {
-    this.model = model(name, new Schema(dbCollection as any));
+  constructor(name: string, private dbCollection: SchemaDefinition) {
+    this.model = model(name, new Schema(dbCollection));
   }
 
   get schema() { console.log("get schema", this.dbCollection); return this.dbCollection; }
+
+  add(model: T): Promise<T> {
+    return new Promise<T>((resolve) => {
+      this.model.collection.insert(model, () => {
+        resolve(model);
+      });
+    }); 
+  }
 
   find(predicate: (entity) => boolean = (entity) => true): Promise<T[]> {
     return new Promise<T[]>((resolve) => {

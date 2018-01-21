@@ -1,10 +1,10 @@
+import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as http from "http";
 import * as socket from "socket.io";
 
 import controllers from "../controllers";
 import * as config from "./config";
-import { setTimeout } from "timers";
 
 const app = express();
 const server = (http as any).Server(app);
@@ -20,6 +20,20 @@ io.on("connection", (soc) => {
 
   soc.on("disconnect", () => {
     console.log("user connected");
+  });
+});
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.post("/api/users", (request, reply) => {
+  controllers.AddUser(request.body);
+  reply.send({ ok: true });
+});
+
+app.get("/api/users", (request, reply) => {
+  controllers.GetAllUsers().then((data) => {
+    reply.send({ users: data });
   });
 });
 

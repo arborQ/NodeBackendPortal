@@ -1,10 +1,9 @@
 import database from "bx-database";
 import { IRepository, IUser } from "bx-entities";
-import { IndexBaseControllerAction, LogDecorator } from "bx-utils";
+export function AddUser(model: any): void {
+    database().Users.insert(model);
+}
 
-@LogDecorator("UserController")
-export default class UserController extends IndexBaseControllerAction<IUser, any> {
-    constructor() {
-        super({ repository: database().Users });
-    }
+export function GetAllUsers(): Promise<any[]> {
+    return database().Users.find();
 }

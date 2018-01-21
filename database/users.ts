@@ -1,4 +1,5 @@
 import { EntitySchema, IEntity } from "./entity";
+import Repository from "./repository";
 
 export interface IUser extends IEntity {
     firstName: string;
@@ -13,3 +14,5 @@ export const UserSchema: EntitySchema<IUser> = {
     isActive: Boolean,
     lastName: String,
 };
+
+export const UserRepository = new Repository("Users", UserSchema);
